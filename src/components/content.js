@@ -26,7 +26,7 @@ class Content extends React.Component {
     componentDidMount() {
         const latitude  = this.props.latitude;
         const longitude = this.props.longitude;
-        console.log(latitude, longitude);
+        console.log('Content', latitude, longitude);
         axios
             .get(
                 `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${API_KEY}&units=metric`
@@ -52,15 +52,6 @@ class Content extends React.Component {
 
     render() {
         const { name, temp, icon, feels_like, error_code, error_mes, time, daynight } = this.state;
-
-        if (error_code || error_mes) {
-            return (
-                <div className="weathererror">
-                    <p>Ошибка: {error_code}</p>
-                    <p>{error_mes}</p>
-                </div>
-            );
-        }
 
         if (error_code || error_mes) {
             return (

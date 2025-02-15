@@ -14,6 +14,7 @@ class FiveDay extends React.Component {
     }
     componentDidMount() {
         const {latitude, longitude} = {latitude : this.props.latitude, longitude : this.props.longitude };
+        console.log('Fiveday', latitude, longitude);
         axios.get(
             `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&appid=${API_KEY}&units=metric`,
         ).

@@ -1,3 +1,3 @@
-const api = 'bc4d47351b343f3c24be2ed5a6a7ed80'
+const api = 'your api'
 
 export default api;

@@ -25,45 +25,54 @@ header {
     justify-self: center;
     align-self: center;
 }
-.upperstreams {
-    align-self: flex-start;
+@mixin streams($align_self) {
     display: flex;
     justify-content: space-between;
     position: relative;
-    right: 0;
+    @if($align_self : flex-start) {
+        align-self: flex-start;
+        right: 0;
+    }
+    @else {
+        align-self: flex-end;
+        left: 0;
+    }
+}
+.upperstreams {
+    @include streams(flex-start);
 }
 .downstreams {
-    align-self: flex-end;
-    display: flex;
-    justify-content: space-between;
-    position: relative;
-    left: 0;
+    @include streams(flex-end);
 }
 img {
     width: 5%;
     height: 30%;
 }
 
-.weatherinfoday {
+@mixin weather($color) {
     height: 100%;
     width: 100%;
     display: grid;
     font-size: 20px;
     grid-template-rows: 0.5fr 0.5fr 1fr 1fr;
-    color: black;
-    background-color: #7171fb;
     border-bottom: 1px solid black;
+
+    @if($color : black) {
+        background-color: #7171fb;
+        color: black;
+    }
+    @else {
+        background-color: #000000;
+        color: white;
+    }
+}
+.weatherinfoday {
+    @include weather(black);
 }
 .weatherinfonight {
-    height: 100%;
-    width: 100%;
-    display: grid;
-    font-size: 20px;
-    grid-template-rows: 0.5fr 0.5fr 1fr 1fr;
-    color: white;
-    background-color: #000000;
-    border-bottom: 1px solid black;
+    @include weather(white);
 }
+
 .feels_like {
     font-size: 12px;
 }
@@ -105,6 +114,7 @@ main {
     justify-content: center;
     align-items: center;
     padding-top: 5px;
+    //text-align: center;
 }
 #fivedays h2 {
     text-align: center;
@@ -141,11 +151,14 @@ main {
     grid-template-rows: 20% 80%;
     justify-content: center;
     align-items: center;
+    border-bottom: 1px solid black;
 }
 .city h2 {
     text-align: center;
 }
-
+.city form {
+    justify-self: center;
+}
 button {
     background-color: black;
     color: white;
